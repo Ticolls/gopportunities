@@ -8,7 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func InitializeSQLite() (*gorm.DB, error) {
+func initializeSQLite() (*gorm.DB, error) {
 	logger := GetLogger("sqlite")
 
 	dbPath := "./db/main.db"
