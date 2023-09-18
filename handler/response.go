@@ -3,8 +3,8 @@ package handler
 import (
 	"fmt"
 	"net/http"
+	"time"
 
-	"github.com/Ticolls/gopportunities/schemas"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,22 +29,40 @@ type ErrorResponse struct {
 	ErrorCode string `json:"errorCode"`
 }
 
+type OpeningResponse struct {
+	ID        uint      `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+	DeletedAt time.Time `json:"deletedAt,omitempty"`
+	Role      string    `json:"role"`
+	Company   string    `json:"company"`
+	Location  string    `json:"location"`
+	Remote    bool      `json:"remote"`
+	Link      string    `json:"link"`
+	Salary    int64     `json:"salary"`
+}
+
 type CreateOpeningResponse struct {
-	Message string                  `json:"message"`
-	Data    schemas.OpeningResponse `json:"data"`
+	Message string          `json:"message"`
+	Data    OpeningResponse `json:"data"`
 }
 
 type DeleteOpeningResponse struct {
-	Message string                  `json:"message"`
-	Data    schemas.OpeningResponse `json:"data"`
+	Message string          `json:"message"`
+	Data    OpeningResponse `json:"data"`
 }
 
 type GetOpeningByIdResponse struct {
-	Message string                  `json:"message"`
-	Data    schemas.OpeningResponse `json:"data"`
+	Message string          `json:"message"`
+	Data    OpeningResponse `json:"data"`
 }
 
 type GetAllOpeningsResponse struct {
-	Message string                    `json:"message"`
-	Data    []schemas.OpeningResponse `json:"data"`
+	Message string            `json:"message"`
+	Data    []OpeningResponse `json:"data"`
+}
+
+type UpdateOpeningResponse struct {
+	Message string          `json:"message"`
+	Data    OpeningResponse `json:"data"`
 }
