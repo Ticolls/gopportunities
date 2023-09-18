@@ -1,15 +1,34 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"log"
+	"os"
+
+	"github.com/Ticolls/gopportunities/middleware"
+	"github.com/gin-gonic/gin"
+)
 
 func Initialize() {
 
 	// Initialize Router
 	router := gin.Default()
 
+	// Config cors
+	router.Use(middleware.CORSMiddleware())
+
 	//Initialize Routes
 	initializeRoutes(router)
 
+	// Setting the port
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	// Run the server
-	router.Run(":8080")
+	err := router.Run(":" + port)
+
+	if err != nil {
+		log.Panicf("error: %s", err)
+	}
 }
